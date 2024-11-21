@@ -26,6 +26,12 @@ jobs:
       run: |
         ./data_cleaner -d < wbcd.txt > cleaned_delete_wbcd.txt
 
+    - name: Upload data_cleaner
+      uses: actions/upload-artifact@v4
+      with:
+        name: data_cleaner
+        path: data_cleaner
+
     - name: Upload cleaned_impute_wbcd
       uses: actions/upload-artifact@v4
       with:

@@ -1,10 +1,22 @@
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -std=c99
 
-all: clean
+OBJS = main.o data_io.o data_cleaning.o
+TARGET = data_cleaner
 
-clean: clean.c
-	$(CC) $(CFLAGS) -o clean clean.c
+all: $(TARGET)
 
-clean_exec: clean
-	./clean
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+main.o: main.c data_io.h data_cleaning.h
+	$(CC) $(CFLAGS) -c main.c
+
+data_io.o: data_io.c data_io.h
+	$(CC) $(CFLAGS) -c data_io.c
+
+data_cleaning.o: data_cleaning.c data_cleaning.h data_io.h
+	$(CC) $(CFLAGS) -c data_cleaning.c
+
+clean:
+	rm -f $(OBJS) $(TARGET)

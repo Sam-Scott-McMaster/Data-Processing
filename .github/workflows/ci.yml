@@ -15,16 +15,25 @@ jobs:
     - name: Set up GCC
       run: sudo apt-get install -y build-essential
 
-    - name: Build clean
-      run: |
-        make clean
+    - name: Build data_cleaner
+      run: make
 
-    - name: Run clean and process wbcd
+    - name: Generate cleaned_impute_wbcd
       run: |
-        ./clean < wbcd.txt > cleaned_wbcd.txt
+        ./data_cleaner < wbcd.txt > cleaned_impute_wbcd.txt
 
-    - name: Upload cleaned_wbcd.txt
+    - name: Generate cleaned_delete_wbcd
+      run: |
+        ./data_cleaner -d < wbcd.txt > cleaned_delete_wbcd.txt
+
+    - name: Upload cleaned_impute_wbcd
       uses: actions/upload-artifact@v4
       with:
-        name: cleaned_wbcd
-        path: cleaned_wbcd.txt
+        name: cleaned_impute_wbcd
+        path: cleaned_impute_wbcd.txt
+
+    - name: Upload cleaned_delete_wbcd
+      uses: actions/upload-artifact@v4
+      with:
+        name: cleaned_delete_wbcd
+        path: cleaned_delete_wbcd.txt

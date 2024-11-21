@@ -1,3 +1,10 @@
+/*
+Header file for data processing utilities.
+This file declares a set of functions for working with 2D arrays of float data.
+These utilities support reading, cleaning, and outputting data, as well as 
+memory management for 2D arrays.
+*/
+
 #ifndef DATA_PROCESSING_H
 #define DATA_PROCESSING_H
 
